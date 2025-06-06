@@ -29,7 +29,7 @@ async function getRecommendations() {
         // First API call - get plan recommendations
         const recommendationPrompt = `You are a mobile plan expert helping someone who might not be familiar with technical terms. Based on this request: "${userInputText}", recommend exactly 3 plan IDs from this list that best match the user's needs. Rank them as "Best", "Great", and "Good". Return ONLY the 3 plan IDs as comma-separated numbers with their rank (example: "1:Best,7:Great,12:Good"). Plans: ${JSON.stringify(MOBILE_PLANS)}`;
 
-        const recommendationResponse = await callGeminiAPI(recommendationPrompt, 0.2, 100, apiKey);
+        const recommendationResponse = await callGeminiAPI(recommendationPrompt, 0.2, 100);
         
         // Parse the plan IDs and ranks
         const planMatches = recommendationResponse.trim().split(',').map(item => {
@@ -68,7 +68,7 @@ ${recommendedPlans.map(plan => `Plan ${plan.id}: [Your explanation here]`).join(
 OVERALL_SUMMARY:
 [Your summary here]`;
 
-        const explanationResponse = await callGeminiAPI(explanationPrompt, 0.7, 500, apiKey);
+        const explanationResponse = await callGeminiAPI(explanationPrompt, 0.7, 500);
         
         // Parse explanations
         const explanationText = explanationResponse;
@@ -99,7 +99,7 @@ OVERALL_SUMMARY:
 }
 
 // Call the Gemini API through our serverless function
-async function callGeminiAPI(prompt, temperature = 0.7, maxOutputTokens = 500, userApiKey) {
+async function callGeminiAPI(prompt, temperature = 0.7, maxOutputTokens = 500) {
     try {
         const response = await fetch('/api/gemini', {
             method: 'POST',
@@ -109,8 +109,7 @@ async function callGeminiAPI(prompt, temperature = 0.7, maxOutputTokens = 500, u
             body: JSON.stringify({
                 prompt,
                 temperature,
-                maxOutputTokens,
-                userApiKey
+                maxOutputTokens
             })
         });
 

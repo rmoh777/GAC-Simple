@@ -21,16 +21,16 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { prompt, temperature = 0.7, maxOutputTokens = 500, userApiKey } = req.body;
+    const { prompt, temperature = 0.7, maxOutputTokens = 500 } = req.body;
 
     if (!prompt) {
       return res.status(400).json({ error: 'Prompt is required' });
     }
 
-    // Use user-provided API key if available, otherwise fall back to environment variable
-    const apiKey = userApiKey || process.env.GeminiKey2 || process.env.GeminiAPI;
+    // Use the secure environment variable
+    const apiKey = process.env.GeminiSecure;
     if (!apiKey) {
-      return res.status(500).json({ error: 'No API key provided. Please provide an API key or set it in environment variables.' });
+      return res.status(500).json({ error: 'API key not configured' });
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
