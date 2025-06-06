@@ -2,9 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Mobile Plan Finder - Georgia Connects</title>
     <meta name="description" content="Find the perfect mobile plan for your needs with AI-powered recommendations.">
+    <!-- Favicon and Touch Icons -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -276,6 +293,7 @@
                     <li><a href="about.html" class="nav-link">About</a></li>
                     <li><a href="news.html" class="nav-link">News</a></li>
                     <li><a href="data.html" class="nav-link">Data</a></li>
+                    <li><a href="interview.html" class="nav-link active">Find Your Plan</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
@@ -286,6 +304,7 @@
                 <li><a href="about.html" class="nav-link">About</a></li>
                 <li><a href="news.html" class="nav-link">News</a></li>
                 <li><a href="data.html" class="nav-link">Data</a></li>
+                <li><a href="interview.html" class="nav-link active">Find Your Plan</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>

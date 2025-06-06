@@ -1,69 +1,112 @@
-# Lifeline Connect
+# Lifeline Plan Finder
 
-A modern, responsive website for Lifeline Connect, helping eligible households access affordable internet and phone services through the Lifeline program.
+A web application that helps users find the best Lifeline wireless plan based on their location and preferences.
 
 ## Features
 
-- Responsive design that works on all devices
-- Modern UI with smooth animations and transitions
-- News section with dynamic content loading
-- Mobile-friendly navigation
-- No build process or dependencies required
-- Hosted on GitHub Pages
+- State-based plan filtering
+- Preference-based recommendations
+- Detailed plan comparisons
+- Provider information and contact details
+- Mobile-responsive design
+- Analytics tracking
 
-## Technology Stack
+## Setup
 
-- HTML5
-- CSS3 (with CSS Variables and Flexbox/Grid)
-- Vanilla JavaScript
-- GitHub Pages for hosting
+1. Clone the repository
+2. Add your Gemini API key to `config/api-config.js`
+3. Open `index.html` in a web browser
 
 ## Project Structure
 
 ```
-lifeline-connect/
-├── index.html              # Homepage
-├── about.html              # About page
-├── news.html               # News index page
-├── contact.html            # Contact page
 ├── css/
-│   └── styles.css          # All styles
+│   ├── interview.css
+│   ├── results.css
+│   └── styles.css
 ├── js/
-│   └── main.js             # Core functionality
-└── .github/
-    └── workflows/
-        └── deploy.yml      # GitHub Pages deployment
+│   ├── analytics.js
+│   ├── gemini-service.js
+│   ├── interview-controller.js
+│   ├── lifeline-providers.js
+│   ├── results-renderer.js
+│   └── state-manager.js
+├── config/
+│   └── api-config.js
+├── images/
+│   └── providers/
+│       ├── assurance.svg
+│       ├── safelink.svg
+│       └── qlink.svg
+└── index.html
 ```
+
+## Components
+
+### State Manager
+- Manages application state
+- Handles user preferences
+- Validates user inputs
+- Persists state in session storage
+
+### Interview Controller
+- Manages the interview flow
+- Handles user interactions
+- Validates step completion
+- Coordinates between services
+
+### Gemini Service
+- Handles API communication
+- Processes recommendations
+- Manages error handling
+- Implements retry logic
+
+### Results Renderer
+- Displays plan comparisons
+- Creates interactive UI elements
+- Handles user interactions
+- Manages responsive layout
+
+### Analytics
+- Tracks user interactions
+- Records step completion times
+- Monitors error rates
+- Provides usage insights
+
+## Usage
+
+1. Select your state
+2. Choose your preferences
+3. Review plan recommendations
+4. Compare plan details
+5. Select a plan and sign up
 
 ## Development
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/rmoh777/GAC-Simple.git
-   ```
+### Adding New Providers
+1. Add provider data to `js/lifeline-providers.js`
+2. Add provider logo to `images/providers/`
+3. Update state coverage in provider data
 
-2. Open any HTML file in your browser to view the site locally.
+### Modifying Styles
+- Use design tokens in CSS files
+- Follow mobile-first approach
+- Maintain consistent spacing
+- Test responsive layouts
 
-3. Make changes to the files as needed.
-
-4. Commit and push your changes to deploy automatically to GitHub Pages.
-
-## Deployment
-
-The site is automatically deployed to GitHub Pages when changes are pushed to the main branch. The deployment is handled by GitHub Actions using the workflow defined in `.github/workflows/deploy.yml`.
+### API Integration
+- Configure API key in `config/api-config.js`
+- Adjust rate limits as needed
+- Monitor API usage
+- Handle errors appropriately
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contact
-
-- Email: gaconnectsyou@gmail.com 
+MIT License - See LICENSE file for details 

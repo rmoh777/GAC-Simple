@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .text { font-family: Arial, sans-serif; font-weight: bold; }
+        .primary { fill: #0066CC; }
+        .secondary { fill: #FF6600; }
+    </style>
+    <text x="10" y="40" class="text primary" font-size="24">Assurance</text>
+    <text x="120" y="40" class="text secondary" font-size="24">Wireless</text>
+</svg> 

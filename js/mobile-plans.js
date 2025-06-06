@@ -208,4 +208,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     // For browser usage
     window.MOBILE_PLANS = MOBILE_PLANS;
-} 
+}

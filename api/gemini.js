@@ -27,7 +27,12 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Prompt is required' });
     }
 
-    const genAI = new GoogleGenerativeAI(process.env.GeminiKey2);
+    const apiKey = process.env.GeminiKey2 || process.env.GeminiAPI;
+    if (!apiKey) {
+      return res.status(500).json({ error: 'Gemini API key is not set in environment variables.' });
+    }
+
+    const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const result = await model.generateContent({
@@ -48,4 +53,4 @@ module.exports = async (req, res) => {
     console.error('Gemini API Error:', error);
     return res.status(500).json({ error: error.message || 'Internal server error' });
   }
-} 
+};
