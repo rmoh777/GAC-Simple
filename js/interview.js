@@ -29,7 +29,7 @@ async function getRecommendations() {
         // First API call - get plan recommendations
         const recommendationPrompt = `You are a mobile plan expert helping someone who might not be familiar with technical terms. Based on this request: "${userInputText}", recommend exactly 3 plan IDs from this list that best match the user's needs. Rank them as "Best", "Great", and "Good". Return ONLY the 3 plan IDs as comma-separated numbers with their rank (example: "1:Best,7:Great,12:Good"). Plans: ${JSON.stringify(MOBILE_PLANS)}`;
 
-        const recommendationResponse = await callGeminiAPI(apiKey, recommendationPrompt, 0.2, 100);
+        const recommendationResponse = await callGeminiAPI(recommendationPrompt, 0.2, 100);
         
         // Parse the plan IDs and ranks
         const planMatches = recommendationResponse.trim().split(',').map(item => {
@@ -68,7 +68,7 @@ ${recommendedPlans.map(plan => `Plan ${plan.id}: [Your explanation here]`).join(
 OVERALL_SUMMARY:
 [Your summary here]`;
 
-        const explanationResponse = await callGeminiAPI(apiKey, explanationPrompt, 0.7, 500);
+        const explanationResponse = await callGeminiAPI(explanationPrompt, 0.7, 500);
         
         // Parse explanations
         const explanationText = explanationResponse;
@@ -98,47 +98,28 @@ OVERALL_SUMMARY:
     }
 }
 
-// Call the Gemini API directly
-async function callGeminiAPI(apiKey, prompt, temperature = 0.7, maxOutputTokens = 500) {
+// Call the Gemini API through our serverless function
+async function callGeminiAPI(prompt, temperature = 0.7, maxOutputTokens = 500) {
     try {
-        const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey, {
+        const response = await fetch('/api/gemini', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                contents: [
-                    {
-                        parts: [
-                            {
-                                text: prompt
-                            }
-                        ]
-                    }
-                ],
-                generationConfig: {
-                    temperature,
-                    topK: 40,
-                    topP: 0.95,
-                    maxOutputTokens,
-                }
+                prompt,
+                temperature,
+                maxOutputTokens
             })
         });
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.error?.message || `API returned status ${response.status}`);
+            throw new Error(errorData.error || `API returned status ${response.status}`);
         }
 
         const data = await response.json();
-        console.log('Gemini API Response:', data);
-
-        if (!data.candidates || data.candidates.length === 0) {
-            throw new Error('No response from Gemini API');
-        }
-
-        // Extract the text from the response
-        return data.candidates[0].content.parts[0].text;
+        return data.text;
     } catch (error) {
         console.error('Gemini API Error:', error);
         throw error;

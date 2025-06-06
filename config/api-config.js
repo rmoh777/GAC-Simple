@@ -3,7 +3,6 @@
  */
 const API_CONFIG = {
     // Gemini API Configuration
-    GEMINI_API_KEY: 'AIzaSyBZpY3-IjZCgxF0a-nQ6Ovs4Pz6N6z1UM0',
     GEMINI_API_ENDPOINT: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent',
     GEMINI_MODEL: 'gemini-pro',
     
@@ -27,7 +26,7 @@ const API_CONFIG = {
     
     // Error Handling
     ERROR_MESSAGES: {
-        API_KEY_MISSING: 'API key is not configured. Please add your Gemini API key to config/api-config.js',
+        API_KEY_MISSING: 'API key is not configured. Please check your environment variables.',
         RATE_LIMIT_EXCEEDED: 'Rate limit exceeded. Please try again later.',
         REQUEST_TIMEOUT: 'Request timed out. Please try again.',
         INVALID_RESPONSE: 'Invalid response from the API.',
